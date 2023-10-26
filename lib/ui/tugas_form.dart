@@ -58,8 +58,8 @@ class _TugasFormState extends State<TugasForm> {
                 _descriptionTugasTextField(),
                 _deadlineTextField(),
                 _buttonSubmit(),
-                if (widget.tugas != null)
-                  _buttonDelete(), // Tambah tombol hapus jika sedang mengubah tugas
+                // if (widget.tugas != null)
+                //   _buttonDelete(), // Tambah tombol hapus jika sedang mengubah tugas
               ],
             ),
           ),
@@ -89,7 +89,7 @@ class _TugasFormState extends State<TugasForm> {
       controller: _descriptionTugasTextboxController,
       validator: (value) {
         if (value!.isEmpty) {
-          return "Deskripsi Tugas harus diisi";
+          return "description Tugas harus diisi";
         }
         return null;
       },
@@ -128,16 +128,16 @@ class _TugasFormState extends State<TugasForm> {
     );
   }
 
-  Widget _buttonDelete() {
-    return OutlinedButton(
-      child: Text("HAPUS"),
-      onPressed: () {
-        if (widget.tugas != null) {
-          hapus();
-        }
-      },
-    );
-  }
+  // Widget _buttonDelete() {
+  //   return OutlinedButton(
+  //     child: Text("HAPUS"),
+  //     onPressed: () {
+  //       if (widget.tugas != null) {
+  //         hapus();
+  //       }
+  //     },
+  //   );
+  // }
 
   simpan() {
     setState(() {
@@ -203,33 +203,33 @@ class _TugasFormState extends State<TugasForm> {
     });
   }
 
-  hapus() {
-    if (widget.tugas != null) {
-      setState(() {
-        _isLoading = true;
-      });
+  // hapus() {
+  //   if (widget.tugas != null) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
 
-      TugasBloc.deleteTugas(id: widget.tugas!.id).then((value) {
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (BuildContext context) => const TugasPage(),
-        ));
-      }, onError: (error) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) => AlertDialog(
-            content: Text("Permintaan hapus data gagal, silahkan coba lagi"),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('OK'),
-              ),
-            ],
-          ),
-        );
-      });
-      setState(() {
-        _isLoading = false;
-      });
-    }
-  }
+  //     TugasBloc.deleteTugas(id: widget.tugas!.id).then((value) {
+  //       Navigator.of(context).push(MaterialPageRoute(
+  //         builder: (BuildContext context) => const TugasPage(),
+  //       ));
+  //     }, onError: (error) {
+  //       showDialog(
+  //         context: context,
+  //         builder: (BuildContext context) => AlertDialog(
+  //           content: Text("Permintaan hapus data gagal, silahkan coba lagi"),
+  //           actions: [
+  //             TextButton(
+  //               onPressed: () => Navigator.of(context).pop(),
+  //               child: const Text('OK'),
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     });
+  //     setState(() {
+  //       _isLoading = false;
+  //     });
+  //   }
+  // }
 }
